@@ -1,0 +1,38 @@
+{
+  "private": true,
+  "name": "google-maps-link-extension",
+  "description": "Extension to open Google Maps in Google Search Results",
+  "homepage": "https://zoma.dev",
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run clean && extension dev",
+    "start": "extension start",
+    "build": "bun run clean && bun run build:chrome && bun run build:edge && bun run build:firefox && bun run build:opera",
+    "build:chrome": "EXTENSION_PUBLIC_PRODUCTION_MODE=true extension build -b chrome && (cd dist/chrome && zip -r ../chrome.zip .)",
+    "build:edge": "EXTENSION_PUBLIC_PRODUCTION_MODE=true extension build -b edge && (cd dist/edge && zip -r ../edge.zip .)",
+    "build:firefox": "EXTENSION_PUBLIC_PRODUCTION_MODE=true extension build -b firefox && (cd dist/firefox && jq '.browser_specific_settings.gecko.id = \"{beaaf2c3-63b8-4b84-9113-8352746ab3fd}\"' manifest.json > tmp.json && mv tmp.json manifest.json) && (cd dist/firefox && zip -r ../firefox.zip .)",
+    "build:opera": "cp -r dist/chrome dist/opera && (cd dist/opera && zip -r ../opera.zip .)",
+    "clean": "rm -rf dist",
+    "lint": "biome check . --files-ignore-unknown=true && prettier . --check",
+    "lint:fix": "biome check . --write --files-ignore-unknown=true && prettier . --write",
+    "update": "npm-check-updates --interactive --root --format group --install always -x '@types/node|@types/react|@types/react-dom' && biome check package.json --write",
+    "typecheck": "tsc --pretty --noEmit",
+    "typesync": "typesync && bun install"
+  },
+  "engines": {
+    "node": "20"
+  },
+  "packageManager": "bun@1.1.33",
+  "dependencies": { "add": "^2.0.6", "cash-dom": "^8.1.5" },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@dotenvx/dotenvx": "^1.20.1",
+    "extension": "https://pkg.pr.new/extension-js/extension.js/extension@215",
+    "npm-check-updates": "^17.1.5",
+    "prettier": "^3.3.3",
+    "typescript": "5.6.3",
+    "typesync": "^0.13.2"
+  },
+  "trustedDependencies": ["@biomejs/biome", "core-js-pure", "spawn-sync"]
+}

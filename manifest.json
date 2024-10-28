@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "1.0.7",
+  "default_locale": "en",
+  "name": "__MSG_extName__",
+  "author": "__MSG_extAuthor__",
+  "description": "__MSG_extDescription__",
+  "icons": {
+    "16": "images/icon@16w.png",
+    "48": "images/icon@48w.png",
+    "128": "images/icon@128w.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://google.com/search*",
+        "https://www.google.com/search*",
+        "https://google.com/",
+        "https://www.google.com/"
+      ],
+      "js": ["src/content/index.ts"]
+    }
+  ]
+}

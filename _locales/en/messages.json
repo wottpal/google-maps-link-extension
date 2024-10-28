@@ -1,0 +1,14 @@
+{
+  "locale": {
+    "message": "en"
+  },
+  "extName": {
+    "message": "Google Maps Buttons in Google Search"
+  },
+  "extAuthor": {
+    "message": "Dennis Zoma · zoma.dev"
+  },
+  "extDescription": {
+    "message": "Shows Google Maps links in your search results & makes maps clickable. Designed for EU residents after the Digital Markets Act."
+  }
+}
